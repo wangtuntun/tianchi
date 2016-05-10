@@ -24,7 +24,7 @@ object clean {
     val user_action_pair=user_action_split.map( x=>((x(1)),(x(0),x(2),x(3),x(4)))  )
     val join=user_action_pair.join(songs_pair)
     //下面是对join后的进行清洗
-
+    //此处添加代码
     sc.stop();
 
   }
