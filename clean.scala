@@ -5,6 +5,7 @@ import org.apache.spark.rdd.RDD
 import org.apache.spark.{SparkContext, SparkConf}
 
 /**
+  * wo xi huan xie dai ma
   * Created by wangtuntun on 16-5-7.
   */
 object clean {
