@@ -1,13 +1,19 @@
-3   获取某一个歌手每天总的播放量
+4   获取某一个歌手每天总的播放量
 
-2   获取某一首歌的走势
+3   获取某一首歌的走势
 发现每一首歌曲的变化趋势都不一样
 select song_id,DS,count(*)  as c from user_actions
 where song_id="1689d15bfc70e7333db3081acef02a61"
 group by song_id,DS
 order by DS
 
-
+2   dataframe读取和保存为parquet文件;dataframe的join和filte和重命名r;dataframe选择几列
+val user_action_filter=df_user.filter("from_unixtime(1231323,'yyyyMMdd') = DS")
+user_action_filter.write.save("/home/wangtuntun/AliMusic/Data/user_action_clean_parquet.parquet")
+val join=df_user.join( df,df("song_id")===df_user("song_id") )
+val join_rename=join.toDF("user_id","song_id_1","gmt_create","action_type","DS","song_id_2","artist_id","publish_time","song_init_plays_new","Language","Gender")
+val join_filter=join_rename.filter("from_unixtime(gmt_create,'yyyyMMdd') < publish_time")
+val songs_only=join_filter.select("song_id_2","artist_id","publish_time","song_init_plays_new","Language","Gender").write.save("/home/wangtuntun/AliMusic/Data/songs_clean_parquet.parquet")
 1   读取数据注册表
 case class Song(song_id:String,artist_id:String,publish_time:String,song_init_plays:String,Language:String,Gender:String)
 
