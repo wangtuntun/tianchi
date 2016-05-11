@@ -23,8 +23,8 @@ object clean {
     val songs_pair=songs_split.map( x=>( (x(0)),(x(1),x(2),x(3),x(4),x(5)) ) )
     val user_action_pair=user_action_split.map( x=>((x(1)),(x(0),x(2),x(3),x(4)))  )
     val join=user_action_pair.join(songs_pair)
-    //下面是对join后的进行清洗
-    //此处添加代码
+    val filter=join.filter( x=>  (x._2._1._3  )<( x._2._2._1 )        )
+
     sc.stop();
 
   }
