@@ -1,11 +1,16 @@
-4   获取某一个歌手每天总的播放量
+5   获取某一个歌手每天总的播放量
 
-3   获取某一首歌的走势
+4   获取某一首歌的走势
 发现每一首歌曲的变化趋势都不一样
 select song_id,DS,count(*)  as c from user_actions
 where song_id="1689d15bfc70e7333db3081acef02a61"
 group by song_id,DS
 order by DS
+
+3   利用sqlContext的sql方法实现过滤筛选
+    val rs=sqlc.sql("select * from user_actions where from_unixtime(gmt_create,'yyyyMMdd') == DS ")
+    rs.save("/home/wangtuntun/rs")
+    这里的sqlc是启动zeppelin创建好的sqlcontext对象
 
 2   dataframe读取和保存为parquet文件;dataframe的join和filte和重命名r;dataframe选择几列
 val user_action_filter=df_user.filter("from_unixtime(1231323,'yyyyMMdd') = DS")
