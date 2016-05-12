@@ -31,7 +31,7 @@ object clean {
       val play_date=x(4)
       val days=play_date.toInt - start_date.toInt
       //(  x(0),x(1),x(2),x(3),days  )
-      x(0) + x(1) + x(2) + x(3) +days
+       (x(0) + "," + x(1) +","+ x(2) +","+ x(3) +","+ days)
 
     }
     user_action_date_to_int.saveAsTextFile("/home/wangtuntun/AliMusic/Data/user_action_DS_int")
