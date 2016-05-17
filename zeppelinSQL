@@ -1,4 +1,11 @@
-5   获取某一个歌手每天总的播放量
+5   获取后十天每个艺术家的平均播放次数
+sqlc.sql("select artist_id,DS,count(*) as cnt    from joind_artist_songs where DS>172 and DS<=182    group by artist_id,DS").registerTempTable("artist_ds_cnt")
+%sql
+select artist_id,avg(cnt) as AVG
+from artist_ds_cnt
+group by artist_id
+order by artist_id
+limit 10
 
 4   获取某一首歌的走势
 发现每一首歌曲的变化趋势都不一样
